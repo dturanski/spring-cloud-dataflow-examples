@@ -43,10 +43,12 @@ $ wget https://repo.spring.io/libs-snapshot/org/springframework/cloud/stream/app
 
 Start the apps:
 
+Note: edit to provide the correct path for the `wrapper.script`. 
+
 ```
 $ java -jar log-sink-rabbit-1.2.1.BUILD-SNAPSHOT.jar --spring.cloud.stream.bindings.input.destination=log
 
-$ java -jar target/python-http-processor-rabbit-1.2.1.BUILD-SNAPSHOT.jar --spring.cloud.stream.bindings.input.destination=transformer --spring.cloud.stream.bindings.output.destination=log --server.port=8081 --wrapper.script=file:/Users/dturanski/python-dev/python-apps/test-wrappers/simple-http-processor-wrapper.py --httpclient.url=http://localhost:5000/py --httpclient.httpMethod=POST
+$ java -jar target/python-http-processor-rabbit-1.2.1.BUILD-SNAPSHOT.jar --spring.cloud.stream.bindings.input.destination=transformer --spring.cloud.stream.bindings.output.destination=log --server.port=8081 --wrapper.script=file:[where you installed]/python-apps/test-wrappers/simple-http-processor-wrapper.py --httpclient.url=http://localhost:5000/py --httpclient.httpMethod=POST
 
 $ java -jar http-source-rabbit-1.2.1.BUILD-SNAPSHOT.jar --spring.cloud.stream.bindings.output.destination=transformer --server.port=8082
 ```
