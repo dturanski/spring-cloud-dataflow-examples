@@ -1,5 +1,8 @@
 # Python local processor on Cloud Foundry (PCF Dev)
 
+Run a stream `time | python-local | log`  where `python-local` uses a local external Python app to process messages.
+
+
 ## Start PCF Dev
 ```
 $ cf dev start
