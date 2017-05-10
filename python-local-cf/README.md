@@ -15,6 +15,7 @@ Note the following command line argument in conjunction with setting these envir
 
 
 `export SPRING_CLOUD_DEPLOYER_CLOUDFOUNDRY_STREAM_MEMORY=512`
+
 `export SPRING_CLOUD_DEPLOYER_CLOUDFOUNDRY_STREAM_USE_SPRING_APPLICATION_JSON=false`
 
 
