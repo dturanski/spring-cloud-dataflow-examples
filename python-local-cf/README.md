@@ -7,7 +7,7 @@ Run a stream `time | time-transformer | log`  where `time-transformer` runs a lo
 
 NOTE: For instructions to run this demo on pcfdev, see the last section.
 
-## Assemble and push the Python processor
+## Assemble the `time-transformer` app
 
 In this step you will copy a simple Python app and the Spring Cloud Stream local Python processor into a directory. You should end up with:
 
