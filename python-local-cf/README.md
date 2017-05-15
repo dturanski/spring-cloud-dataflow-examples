@@ -62,7 +62,7 @@ $ zip ../time-transformer.zip -r *
 
 ```
 
-Push the zip to a git repo or use the one in the example.
+## Push the zip to a git repo or use the one in the example.
 
 
 ## Register apps
@@ -70,22 +70,8 @@ Push the zip to a git repo or use the one in the example.
 ```
 dataflow:>app import --uri http://bit.ly/Bacon-RELEASE-stream-applications
 dataflow:>app register --type processor --name time-transformer --uri https://github.com/dturanski/spring-cloud-stream-binaries/blob/master/binaries/time-transformer.zip?raw=true
-Successfully registered application 'processor:time-transformer'
 ```
-dataflow:>stream create pytock --definition "time | time-transformer --python.basedir=. --python.script=time-delta.py | log"
-Created new stream 'pytock'
-dataflow:>stream deploy pytock
-Deployment request has been sent for stream 'pytock'
-dataflow:>stream undeploy pytock
-Un-deployed stream 'pytock'
-dataflow:>stream deploy pytock --properties "deployer.time-transformer.cloudfoundry.buildpack=https://github.com/dturanski/java-python-buildpack"
-Deployment request has been sent for stream 'pytock'
-dataflow:>cf undeploy pytock
-Command 'cf undeploy pytock' not found (for assistance press TAB)
-dataflow:>stream undeploy pytock
-Un-deployed stream 'pytock'
-dataflow:>stream deploy pytock --properties "deployer.time-transformer.cloudfoundry.buildpack=https://github.com/dturanski/java-python-buildpack"
-dataflow:>app register --force --type processor --name python-local --uri https://raw.githubusercontent.com/dturanski/spring-cloud-stream-binaries/master/binaries/python-local-processor-rabbit-1.2.1.BUILD-SNAPSHOT.jar
+
 
 ```
 
@@ -93,9 +79,6 @@ dataflow:>app register --force --type processor --name python-local --uri https:
 ```
 dataflow:>stream create pytock --definition "time | time-transformer --python.basedir=. --python.script=time-delta.py | log"
 dataflow:>stream deploy pytock --properties "deployer.time-transformer.cloudfoundry.buildpack=https://github.com/dturanski/java-python-buildpack"
-```
-
-dataflow:>stream deploy pytest --properties "deployer.python-local.cloudfoundry.buildpack=https://github.com/dturanski/java-python-buildpack"
 ```
 
 ## Tail the log output
