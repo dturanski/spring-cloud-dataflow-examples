@@ -12,7 +12,7 @@ dataflow:>app register --type processor --name jython-processor --uri file:///Us
 
 Create the stream. Note the inverted use of single and double quotes. 
 ```
-dataflow:>stream create tweets --definition 'twitterstream --twitter.credentials.consumerKey=fGOCqR0UIXSdQ4SJBB5opCnTQ --twitter.credentials.consumerSecret=[] --twitter.credentials.accessToken=[] --twitter.credentials.accessTokenSecret=[] | aggregator --correlation=1 --release=#this.size()==5 | python-http --git.uri=https://github.com/dturanski/python-apps --wrapper.script=test-wrappers/get-tweet-sentiments.py  --httpclient.http-method=POST --httpclient.headersExpression={"Content-Type":"application/json"} --httpclient.url=http://sentiment-compute.cfapps.pez.pivotal.io/polarity_compute | splitter |  log'
+dataflow:>stream create tweets --definition 'twitterstream --twitter.credentials.consumerKey=[] --twitter.credentials.consumerSecret=[] --twitter.credentials.accessToken=[] --twitter.credentials.accessTokenSecret=[] | aggregator --correlation=1 --release=#this.size()==5 | python-http --git.uri=https://github.com/dturanski/python-apps --wrapper.script=test-wrappers/get-tweet-sentiments.py  --httpclient.http-method=POST --httpclient.headersExpression={"Content-Type":"application/json"} --httpclient.url=http://sentiment-compute.cfapps.pez.pivotal.io/polarity_compute | splitter |  log'
 ```
 
 Create an tap for a Field value counter
