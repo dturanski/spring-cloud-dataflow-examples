@@ -56,6 +56,7 @@ $ java -jar spring-cloud-dataflow-shell-1.2.0.BUILD-SNAPSHOT.jar
 ```
 
 ## Zip the python app
+
 ```
 $ cd app
 $ zip ../time-transformer.zip -r *
@@ -70,9 +71,6 @@ $ zip ../time-transformer.zip -r *
 ```
 dataflow:>app import --uri http://bit.ly/Bacon-RELEASE-stream-applications
 dataflow:>app register --type processor --name time-transformer --uri https://github.com/dturanski/spring-cloud-stream-binaries/blob/master/binaries/time-transformer.zip?raw=true
-```
-
-
 ```
 
 ## Create and deploy the stream `time | time-transformer | log`
