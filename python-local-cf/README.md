@@ -5,8 +5,6 @@ Run a stream `time | python-local | log`  where `python-local` uses a local exte
 
 # cf push Spring Cloud Stream apps 
 
-NOTE: Get disk full errors attempting to deploy to PCF Dev (The jar file is ~ 71 MB)
-
 
 ## Set up and run the Python processor
 
@@ -89,3 +87,51 @@ INFO 15 --- [2usR_jp7eqfvg-1] log                                      : 0:00:00
 INFO 15 --- [2usR_jp7eqfvg-1] log                                      : 0:00:00.353800
 INFO 15 --- [2usR_jp7eqfvg-1] log                                      : 0:00:00.355185
 ```
+
+
+# Modifications for running on Pcfdev
+
+## Instructions for running on pcfdev
+
+NOTE: You will likely see disk full errors attempting to deploy to pcfdev. The jar file is ~ 71 MB with jython-standalone embedded. This demo does not require Jython 
+wrappers so you can build apps/python-local-processor-rabbit without Jython:
+
+Use https://github.com/dturanski/spring-cloud-stream-binaries/blob/master/binaries/python-local-processor-rabbit-no-jython-1.2.1.BUILD-SNAPSHOT.jar?raw=true 
+
+Or build one:
+
+```
+$ git clone https://github.com/dturanski/spring-cloud-stream-app-starters-python.git
+$ cd spring-cloud-stream-app-starters-python
+$ ./mvnw clean install -PgenerateApps
+$ cd apps/python-local-processor-rabbit
+```
+
+Edit the pom file:
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud.stream.app</groupId>
+     <artifactId>spring-cloud-starter-stream-processor-python-local</artifactId>
+     <exclusions>
+         <exclusion>
+            <groupId>org.python</groupId>
+            <artifactId>jython-standalone</artifactId>
+         </exclusion>
+     </exclusions> 
+</dependency>
+
+```
+
+```
+$ mvn clean package
+```
+
+Increase default memory
+
+```
+$ cf push -f log-sink-manifest.yml -m 750M
+$ cf push -f time-source-manifest.yml -m 750M
+```
+
+
