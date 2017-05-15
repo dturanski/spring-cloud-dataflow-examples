@@ -1,12 +1,13 @@
 # Python local processor on Cloud Foundry 
 
-Run a stream `time | python-local | log`  where `python-local` uses a local external Python app to process messages.
+Run a stream `time | time-transformer | log`  where `time-transformer` runs a local Python app to process messages.
 
 
 # cf push Spring Cloud Stream apps 
 
+NOTE: For instructions to run this demo on pcfdev, see the last section.
 
-## Set up and run the Python processor
+## Assemble and push the Python processor
 
 ```
 $cd python-local-cf
@@ -19,7 +20,7 @@ $cd ..
 $cf push -f time-transformer-manifest.yml
 ```
 
-## Deploy  time and log
+## Push time and log
 
 ```
 $ cd python-local-cf
@@ -89,12 +90,12 @@ INFO 15 --- [2usR_jp7eqfvg-1] log                                      : 0:00:00
 ```
 
 
-# Modifications for running on Pcfdev
 
-## Instructions for running on pcfdev
+# Instructions for running the demo on pcfdev
 
-NOTE: You will likely see disk full errors attempting to deploy to pcfdev. The jar file is ~ 71 MB with jython-standalone embedded. This demo does not require Jython 
-wrappers so you can build apps/python-local-processor-rabbit without Jython:
+Start pcfdev and create a `rabbit` service if necessary.
+
+NOTE: You will likely see disk full errors attempting to push `time-transformer` to pcfdev. The jar file is ~ 71 MB with jython-standalone embedded. This demo does not require Jython wrappers so you can build apps/python-local-processor-rabbit without Jython:
 
 Use https://github.com/dturanski/spring-cloud-stream-binaries/blob/master/binaries/python-local-processor-rabbit-no-jython-1.2.1.BUILD-SNAPSHOT.jar?raw=true 
 
