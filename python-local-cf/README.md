@@ -34,6 +34,9 @@ $ wget https://repo.spring.io/libs-snapshot/org/springframework/cloud/stream/app
 ```
 
 ## Push the apps
+
+Note that `time-transformer-manifest.yml` is configured to use https://github.com/dturanski/java-python-buildpack[The Java Python buildpack].
+
 ```
 $ cd python-local-cf
 $ cf push -f time-transformer-manifest.yml
