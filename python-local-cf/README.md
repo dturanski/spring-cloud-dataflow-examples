@@ -68,7 +68,7 @@ Push the zip to a git repo or use the one in the example.
 ## Register apps
 
 ```
-dataflow:>$app import --uri http://bit.ly/Bacon-RELEASE-stream-applications
+dataflow:>app import --uri http://bit.ly/Bacon-RELEASE-stream-applications
 dataflow:>app register --type processor --name time-transformer --uri https://github.com/dturanski/spring-cloud-stream-binaries/blob/master/binaries/time-transformer.zip?raw=true
 Successfully registered application 'processor:time-transformer'
 ```
