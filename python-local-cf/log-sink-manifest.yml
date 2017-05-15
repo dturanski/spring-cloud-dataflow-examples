@@ -1,0 +1,10 @@
+---
+applications:
+- name: log
+  path: ./log-sink-rabbit-1.2.1.BUILD-SNAPSHOT.jar
+  buildpack: https://github.com/cloudfoundry/java-buildpack
+  env:
+    JAVA_OPTS: '-Dspring.cloud.stream.bindings.input.destination=log'
+  random-route: true
+  services:
+    - rabbit

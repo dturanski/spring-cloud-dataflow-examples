@@ -1,0 +1,12 @@
+---
+applications:
+- name: time-transformer
+  memory: 1024M
+  path: app
+  buildpack: https://github.com/dturanski/java-python-buildpack
+  env:
+    JAVA_OPTS: '-Dspring.cloud.stream.bindings.input.destination=python -Dspring.cloud.stream.bindings.output.destination=log  -Dpython.basedir=.  -Dpython.script=time-delta.py -Dlogging.level.org.springframework.cloud.stream.app.python=DEBUG'
+
+  random-route: true
+  services:
+    - rabbit

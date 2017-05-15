@@ -1,0 +1,10 @@
+---
+applications:
+- name: time
+  path: ./time-source-rabbit-1.2.1.BUILD-SNAPSHOT.jar
+  buildpack: https://github.com/cloudfoundry/java-buildpack
+  env:
+    JAVA_OPTS: '-Dspring.cloud.stream.bindings.output.destination=python'
+  random-route: true
+  services:
+    - rabbit
