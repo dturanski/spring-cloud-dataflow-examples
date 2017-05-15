@@ -9,6 +9,15 @@ NOTE: For instructions to run this demo on pcfdev, see the last section.
 
 ## Assemble and push the Python processor
 
+In this step you will copy a simple Python app and the Spring Cloud Stream local Python processor into a directory. You should end up with:
+
+```
+app\
+   python-local-processor-rabbit-1.2.1.BUILD-SNAPSHOT.jar
+   time-delta.py
+   requirements.txt
+``` 
+
 ```
 $cd python-local-cf
 $git clone https://github.com/dturanski/python-apps.git
@@ -16,16 +25,18 @@ $mkdir app
 $cp python-apps/test-stream-scripts/time-transformer/* app
 $cd app
 $wget https://raw.githubusercontent.com/dturanski/spring-cloud-stream-binaries/master/binaries/python-local-processor-rabbit-1.2.1.BUILD-SNAPSHOT.jar
-$cd ..
-$cf push -f time-transformer-manifest.yml
 ```
-
-## Push time and log
+## Download time and log
 
 ```
-$ cd python-local-cf
 $ wget https://repo.spring.io/libs-snapshot/org/springframework/cloud/stream/app/time-source-rabbit/1.2.1.BUILD-SNAPSHOT/time-source-rabbit-1.2.1.BUILD-SNAPSHOT.jar
 $ wget https://repo.spring.io/libs-snapshot/org/springframework/cloud/stream/app/log-sink-rabbit/1.2.1.BUILD-SNAPSHOT/log-sink-rabbit-1.2.1.BUILD-SNAPSHOT.jar
+```
+
+## Push the apps
+```
+$ cd python-local-cf
+$ cf push -f time-transformer-manifest.yml
 $ cf push -f log-sink-manifest.yml
 $ cf push -f time-source-manifest.yml
 ```
